@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="./css/vendors.min.css">
+    <link rel="stylesheet" href="./css/main.min.css">
+    <style>
+        label {
+            display: inline-block;
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="maincontent">
+        <section class="section">
+            <div class="container">
+                <h2>{{title}}</h2>
+                <div class="order__form">
+                    <form class="order__form-tag" action="/submit/update/{{customer.id}}"
+                          enctype="multipart/form-data" method="POST">
+                        <div>
+                            <label>Имя:
+                                <input class="order__form-input" name="name" type="text" placeholder=""
+                                       maxlength="60" value="{{user.user_name}}" required>
+                            </label>
+                            <label>Телефон:
+                                <input class="order__form-input phone-mask" name="phone" type="text" placeholder=""
+                                       maxlength="20" value="{{customer.tel}}" required>
+                            </label>
+                            <label>Фото:
+                                <input class="order__form-input" name="photo" type="file">
+                            </label>
+                            <label>email
+                                <input class="order__form-input" name="email" type="email" placeholder=""
+                                       value="{{user.user_email}}" maxlength="80" required>
+                            </label>
+                        </div>
+                        <div>
+                            <label>Улица
+                                <input class="order__form-input" name="street" type="text" placeholder=""
+                                       value="{{customer.street}}" maxlength="30" required>
+                            </label>
+                            <label>Дом
+                                <input class="order__form-input" name="home" type="text" placeholder=""
+                                       value="{{customer.house}}" maxlength="6" required>
+                            </label>
+                            <label>Корпус
+                                <input class="order__form-input" name="part" type="text" placeholder=""
+                                       value="{{customer.house_block}}" maxlength="4">
+                            </label>
+                            <label>Квартира
+                                <input class="order__form-input" name="appt" type="text" placeholder=""
+                                       value="{{customer.apt}}" maxlength="6">
+                            </label>
+                            <label>Этаж
+                                <input class="order__form-input" name="floor" type="text" placeholder="4"
+                                       value="{{customer.floor}}" maxlength="3">
+                            </label>
+                        <div>
+                            <label>Комментарий
+                                <textarea class="order__form-input order__form-input_textarea" name="comment" maxlength="500">
+                                    {{customer.comments}}
+                                </textarea>
+                            </label>
+                            <label>
+                                <input name="payment" type="radio" value="1">
+                                Потребуется сдача
+                            </label>
+                            <label>
+                                <input name="payment" type="radio" value="0">
+                                Оплата по карте
+                            </label>
+                            <label>
+                                <input name="callback" type="checkbox" value="1">
+                                Не перезванивать
+                            </label>
+                        </div>
+                        <div>
+                            <input name="" type="submit" value="Сохранить">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>

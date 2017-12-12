@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="./css/vendors.min.css">
+    <link rel="stylesheet" href="./css/main.min.css">
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid #000;
+            border-collapse: collapse;
+            vertical-align: top;
+        }
+        td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h2>Админ панель</h2>
+<p><a href="/admin/create">Добавить пользователя</a></p>
+<table>
+    <tr>
+        <th>№</th>
+        <th>Имя</th>
+        <th>Почта</th>
+        <th>Фото</th>
+        <th>Телефон</th>
+        <th>Адрес</th>
+        <th>Комментарий</th>
+        <th>Редактирование</th>
+    </tr>
+    {% for value in data %}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{value.user_name}}</td>
+        <td>{{value.user_email}}</td>
+        <td>
+            {% if value.photo %}
+                <img src="/upload/{{value.photo}}" width="50" height="50" alt="">
+            {% endif %}
+        </td>
+        <td>
+            {{value.tel}}
+        </td>
+        <td>
+            {% if value.street %}
+                Улица - {{value.street}}
+            {% endif %}
+            {% if value.house %}
+                , дом - {{value.house}}
+            {% endif %}
+            {% if value.house_block %}
+                , корпус - {{value.house_block}}
+            {% endif %}
+            {% if value.apt %}
+                , квартира - {{value.apt}}
+            {% endif %}
+            {% if value.floor %}
+                , этаж - {{value.floor}}
+            {% endif %}.
+        </td>
+        <td>
+            {% if value.need_cashback %}
+                Нужна сдача.<br>
+            {% else %}
+                Расплатятся картой.<br>
+            {% endif %}
+            {% if value.need_callback %}
+                Нужно перезвонить.<br>
+            {% else %}
+                Перезванивать не нужно.<br>
+            {% endif %}
+            - {{value.comments}}
+        </td>
+        <td>
+            <a href="/admin/edit/{{value.customer_id}}">Редактировать</a><br>
+            <a href="/submit/delete/{{value.customer_id}}">Удалить</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body  >
+</html>
